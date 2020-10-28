@@ -1,4 +1,10 @@
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import './MyDatePicker.css';
+
+
+let oneDay = 60 * 60 * 24 * 1000;
+let todayTimestamp = Date.now() - (Date.now() % oneDay) + (new Date().getTimezoneOffset() * 100 * 60);
 
 export default class MyDatePicker extends Component {
 
@@ -10,7 +16,7 @@ export default class MyDatePicker extends Component {
     window.addEventListener('click', this.addBackDrop);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener('click', this.addBackDrop);
   }
 
