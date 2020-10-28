@@ -1,0 +1,45 @@
+.MyDatePicker {
+  float: left;
+  position: relative;
+}
+.MyDatePicker * {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently */
+}
+
+.mdp-input{
+  float: left;
+  width: 150px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.mdp-input input:focus{
+  outline: none;
+}
+.mdp-input input{
+  width: 125%;
+  background: #f5f5f5;
+  border: none;
+  height: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.mdp-container {
+  float: left;
+  position: absolute;
+  left:0;
+  top: 40px;
+  width: 300px;
+  min-height: 350px;
+  background: #fff;
+  box-shadow: 10px 10px 40px rgba(0,0,0,0.2);
+}
