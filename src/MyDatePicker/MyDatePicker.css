@@ -42,4 +42,105 @@
   min-height: 350px;
   background: #fff;
   box-shadow: 10px 10px 40px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 25px 30px;
+}
+
+.mdpc-head {
+  float: left;
+  width: 100%;
+  height: 53%;
+}
+
+.mdpc-body {
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/**
+  * Controls
+  */
+
+.mdpch-button {
+  float: left;
+  width: 45px;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.mdpch-inner:hover > span {
+  border-color: #555!important;
+}
+
+.mdpch-inner:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.mdpchb-inner {
+  float: left;
+  height: 35px;
+  width: 35px;
+  background: #f4f4f4;
+  border-radius: 100%;
+  line-height: 35px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -17px;
+}
+
+
+/**
+  * Arrows
+  */
+
+.mdpchbi-right-arrows:after,
+.mdpchbi-left-arrows:after,
+.mdpchbi-right-arrow,
+.mdpchbi-right-arrows,
+.mdpchbi-left-arrow,
+.mdpchbi-left-arrows{
+    display: block;
+    float: left;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid #888;
+    border-bottom: 2px solid #888;
+    position: absolute;
+}
+.mdpchbi-right-arrow,
+.mdpchbi-right-arrows,
+.mdpchbi-left-arrow,
+.mdpchbi-left-arrows{
+    transform: rotate(45deg);
+    left: 50%;
+    top:50%;
+    margin-left: -2px;
+    margin-top: -4px;
+}
+.mdpchbi-right-arrows,
+.mdpchbi-right-arrow {
+    transform: rotate(225deg);
+    margin-left: -4px;
+}
+.mdpchbi-right-arrows:after,
+.mdpchbi-left-arrows:after{
+    content: '';
+}
+
+.mdpchbi-left-arrows{
+    margin-left: -5px;
+}
+.mdpchbi-right-arrows{
+    margin-left: -2px;
+}
+.mdpchbi-right-arrows:after,
+.mdpchbi-left-arrows:after{
+    left: 3px;
+    top: -5px
 }
