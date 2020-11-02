@@ -280,12 +280,15 @@
 .c-day-container.disabled .cdc-day span {
   color: #ddd;
 }
+
 .c-day-container.disabled .cdc-day span {
   background: #fff!important;
 }
+
 .c-day-container.highlight .cdc-day span {
   background: #efdbca;
 }
+
 .c-day-container.highlight-green .cdc-day span {
   background: #d4e2cb;
 }

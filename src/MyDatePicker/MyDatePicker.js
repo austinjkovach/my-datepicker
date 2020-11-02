@@ -185,7 +185,6 @@ class MyDatePicker extends Component {
   // Calendar //
   //////////////
   renderCalendar() {
-    console.log('monthDetails', this.state.monthDetails)
     const days = this.state.monthDetails.map((day, index) => {
       const disabledClass = day.month !== 0 ? ' disabled' : '';
       const highlightedClass = this.isCurrentDay(day) ? ' highlight' : '';
