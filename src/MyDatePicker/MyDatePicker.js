@@ -192,7 +192,11 @@ class MyDatePicker extends Component {
       const className  = `c-day-container${disabledClass}${highlightedClass}${selectedClass}`
       return (
         <div className={className} key={index}>
-          {day.date}
+          <div className='cdc-day'>
+            <span onClick={()=>this.onDateClick(day)}>
+              {day.date}
+            </span>
+          </div>
         </div>
       )
     });
