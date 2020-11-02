@@ -7,7 +7,7 @@ const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp = Date.now() - (Date.now() % oneDay) + (new Date().getTimezoneOffset() * 100 * 60);
 const inputRef = React.createRef();
 
-export default class MyDatePicker extends Component {
+class MyDatePicker extends Component {
 
   constructor(props) {
     super(props);
@@ -185,7 +185,6 @@ export default class MyDatePicker extends Component {
   // Calendar //
   //////////////
   renderCalendar() {
-    console.log('monthDetails', this.state.monthDetails)
     const days = this.state.monthDetails.map((day, index) => {
       const disabledClass = day.month !== 0 ? ' disabled' : '';
       const highlightedClass = this.isCurrentDay(day) ? ' highlight' : '';
@@ -232,6 +231,20 @@ export default class MyDatePicker extends Component {
                       <span className="mdpchbi-left-arrow"></span>
                     </div>
                   </div>
+                  <div className='mdpch-container'>
+                    <div className='mdpchc-year'>{this.state.year}</div>
+                    <div className='mdpchc-month'>{this.getMonthStr(this.state.month)}</div>
+                  </div>
+                  <div className='mdpch-button'>
+                    <div className='mdpchb-inner' onClick={()=> null /* this.setMonth(1) */}>
+                      <span className='mdpchbi-right-arrow'></span>
+                    </div>
+                  </div>
+                  <div className='mdpch-button' onClick={()=> null /*this.setYear(1) */}>
+                    <div className='mdpchb-inner'>
+                      <span className='mdpchbi-right-arrows'></span>
+                    </div>
+                  </div>
                 </div>
                 <div className="mdpc-body">
                   {this.renderCalendar()}
@@ -242,3 +255,5 @@ export default class MyDatePicker extends Component {
     )
   }
 }
+
+export default MyDatePicker;
