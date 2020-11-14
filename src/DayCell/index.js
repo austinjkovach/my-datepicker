@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
 
 const DayCell = props => (
   <div className={props.className} key={props.index}>
@@ -10,4 +10,4 @@ const DayCell = props => (
   </div>
 )
 
-export default DayCell;
+export default memo(DayCell);

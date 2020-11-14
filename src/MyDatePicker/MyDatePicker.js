@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './MyDatePicker.css';
 
 import CalendarControls from '../CalendarControls/index';
-import DayCell from '../DayCell/index';
+// import DayCell from '../DayCell/index';
+import CalendarBody from '../CalendarBody/index';
 
 const oneDay = 60 * 60 * 24 * 1000;
 const todayTimestamp = Date.now() - (Date.now() % oneDay) + (new Date().getTimezoneOffset() * 100 * 60);
@@ -54,7 +55,6 @@ class MyDatePicker extends Component {
      */
 
   daysMap = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  daysAbbrevMap = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   monthMap = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   ///////////////////////////////////////////
@@ -203,34 +203,6 @@ class MyDatePicker extends Component {
   //////////////
   // Calendar //
   //////////////
-
-  renderCalendarBody() {
-    const days = this.state.monthDetails.map((day, index) => {
-      const disabledClass = day.month !== 0 ? ' disabled' : '';
-      const highlightedClass = this.isCurrentDay(day) ? ' highlight' : '';
-      const selectedClass = this.isSelectedDay(day) ? ' highlight-green' : '';
-      const className  = `c-day-container${disabledClass}${highlightedClass}${selectedClass}`
-
-      return <DayCell className={className} day={day} index={index} handleDateClick={this.onDateClick} />
-    });
-
-    return (
-      <div className="mdpc-body">
-        <div className='c-container'>
-          <div className='cc-head'>
-            {this.daysAbbrevMap.map((d, i) => <div key={i} className='cch-name'>{d}</div>)}
-          </div>
-          <div className='cc-body'>
-            {days}
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  /////////////////////////
-  // The Rest of the Owl //
-  /////////////////////////
   render() {
     const { month, year } = this.state;
     return (
@@ -239,10 +211,15 @@ class MyDatePicker extends Component {
           <input type='date' onChange={this.updateDateFromInput} ref={inputRef} />
         </div>
         {this.state.showDatePicker && (
-            <div className='mdp-container'>
-                <CalendarControls month={month} year={year}/>
-                {this.renderCalendarBody()}
-            </div>
+          <div className='mdp-container'>
+              <CalendarControls month={month} year={year}/>
+              <CalendarBody
+                monthDetails={this.state.monthDetails}
+                selectedDay={this.state.selectedDay}
+                todayTimestamp={todayTimestamp}
+                onDateClick={this.onDateClick}
+              />
+          </div>
         )}
       </div>
     )
