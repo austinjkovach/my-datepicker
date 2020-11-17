@@ -18,6 +18,7 @@ const CalendarBody = props => {
         day={day}
         index={index}
         handleDateClick={props.onDateClick}
+        key={index}
       />
     )
   });

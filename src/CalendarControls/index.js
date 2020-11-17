@@ -6,13 +6,18 @@ const CalendarControls = props => {
 
     return (
       <div className="mdpc-head">
+        <div className="mdpch-button" id="todayButton">
+          <div className="mdpch-inner" onClick={ props.setToday } >
+            <div className="today-button"></div>
+          </div>
+        </div>
         <div className="mdpch-button">
-          <div className="mdpch-inner" onClick={() => null/* TODO this.setYear(-1) */}>
+          <div className="mdpch-inner" onClick={ () => props.setYear(-1) }>
             <span className="mdpchbi-left-arrows"></span>
           </div>
         </div>
         <div className="mdpch-button">
-          <div className="mdpchb-inner" onClick={() => null /* TODO this.setMonth(-1) */}>
+          <div className="mdpchb-inner" onClick={ () => props.setMonth(-1) }>
             <span className="mdpchbi-left-arrow"></span>
           </div>
         </div>
@@ -21,11 +26,11 @@ const CalendarControls = props => {
           <div className='mdpchc-month'>{getMonthString(props.month)}</div>
         </div>
         <div className='mdpch-button'>
-          <div className='mdpchb-inner' onClick={()=> null /* this.setMonth(1) */}>
+          <div className='mdpchb-inner' onClick={ () => props.setMonth(1) }>
             <span className='mdpchbi-right-arrow'></span>
           </div>
         </div>
-        <div className='mdpch-button' onClick={()=> null /*this.setYear(1) */}>
+        <div className='mdpch-button' onClick={ () => props.setYear(1) }>
           <div className='mdpchb-inner'>
             <span className='mdpchbi-right-arrows'></span>
           </div>
