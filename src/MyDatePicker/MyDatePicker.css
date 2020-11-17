@@ -293,3 +293,23 @@
 .c-day-container.highlight-green .cdc-day span {
   background: #d4e2cb;
 }
+
+
+#todayButton {
+  float: none;
+  display: flex;
+  justify-content: center;
+  height: initial;
+  width: 100%;
+}
+
+.today-button {
+  margin: 0 auto;
+  text-align: center;
+  width: 5px;
+  height: 5px;
+  border: 2px solid #888;
+  cursor: pointer;
+
+  transform: rotate(45deg);
+}

@@ -56,9 +56,9 @@ class MyDatePicker extends Component {
   daysMap = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   monthMap = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  ///////////////////////////////////////////
-  // Create and return a single Day object //
-  ///////////////////////////////////////////
+  //////////////////////////////////////////////
+  // 1) Create and return a single Day object //
+  //////////////////////////////////////////////
   //
   // date       -> int
   // dayOfWeek  -> int (0 - 7)
@@ -89,16 +89,16 @@ class MyDatePicker extends Component {
     }
   }
 
-  ////////////////////////////////////////////////
-  // Return the number of days in a given month //
-  ////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  // 2) Return the number of days in a given month //
+  ///////////////////////////////////////////////////
   getNumberOfDays = (year, month) => {
     return 40 - new Date(year, month, 40).getDate();
   }
 
-  /////////////////////////////////
-  // Return array of Day objects //
-  /////////////////////////////////
+  ////////////////////////////////////
+  // 3) Return array of Day objects //
+  ////////////////////////////////////
   getMonthDetails = (year, month) => {
     const firstDay = (new Date(year, month)).getDay(); //==> first day of month MM/YY
     const numberOfDays = this.getNumberOfDays(year, month); //==> number of days in month
@@ -128,9 +128,9 @@ class MyDatePicker extends Component {
   isCurrentDay = day => day.timestamp === todayTimestamp;
   isSelectedDay = day => day.timestamp === this.state.selectedDay;
 
-  ////////////////////////////////////////////////////////////////////////
-  // Return Object shaped { year, month, date} from "YYYY-MM-DD" string //
-  ////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////
+  // 4) Return Object shaped { year, month, date} from "YYYY-MM-DD" string //
+  ///////////////////////////////////////////////////////////////////////////
   getDateFromDateString = dateValue => {
     let dateData = dateValue.split('-').map(d=> parseInt(d, 10));
     if(dateData.length < 3) {
@@ -145,9 +145,9 @@ class MyDatePicker extends Component {
 
   getMonthStr = month => this.monthMap[Math.max(Math.min(11, month), 0)] || 'Month';
 
-  ////////////////////////////////
-  // Return "YYYY-MM-DD" string //
-  ////////////////////////////////
+  ///////////////////////////////////
+  // 5) Return "YYYY-MM-DD" string //
+  ///////////////////////////////////
   getDateStringFromTimestamp = timestamp => {
     const dateObject = new Date(timestamp);
     const month = dateObject.getMonth()+1;
@@ -159,9 +159,9 @@ class MyDatePicker extends Component {
     return `${year}-${paddedMonth}-${paddedDay}`
   }
 
-  ///////////////////////////////////////////////////////
-  // Update selectedDay if Input field is a valid Date //
-  ///////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  // 6) Update selectedDay if Input field is a valid Date //
+  //////////////////////////////////////////////////////////
   updateDateFromInput = () => {
     const dateValue = inputRef.current.value; // Format: "YYYY-MM-DD"
     const dateData = this.getDateFromDateString(dateValue);
@@ -182,17 +182,66 @@ class MyDatePicker extends Component {
     }
   }
 
+  ////////
+  // 7) //
+  ////////
   setDateToInput = timestamp => {
     let dateString = this.getDateStringFromTimestamp(timestamp);
     inputRef.current.value = dateString;
   }
 
-
+  ////////
+  // 8) //
+  ////////
   onDateClick = day => {
     this.setState({selectedDay: day.timestamp}, () => this.setDateToInput(day.timestamp));
     if(this.props.onChange) {
       this.props.onChange(day.timestamp);
     }
+  }
+
+  ////////
+  // 9) //
+  ////////
+  setYear = offset => {
+    let year = this.state.year + offset;
+    let month = this.state.month;
+    this.setState({
+        year,
+        monthDetails: this.getMonthDetails(year, month)
+    });
+  }
+
+  /////////
+  // 10) //
+  /////////
+  setMonth = offset => {
+    let year = this.state.year;
+    let month = this.state.month + offset;
+    if(month === -1) {
+      month = 11;
+      year--;
+    } else if (month === 12) {
+      month = 0;
+      year++;
+    }
+    this.setState({
+      year,
+      month,
+      monthDetails: this.getMonthDetails(year, month)
+    })
+  }
+
+  setToday = () => {
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+
+    this.setState({
+      year,
+      month,
+      monthDetails: this.getMonthDetails(year, month)
+    })
   }
 
   /**
@@ -211,7 +260,13 @@ class MyDatePicker extends Component {
         </div>
         {this.state.showDatePicker && (
           <div className='mdp-container'>
-              <CalendarControls month={month} year={year}/>
+              <CalendarControls
+                month={month}
+                year={year}
+                setYear={this.setYear}
+                setMonth={this.setMonth}
+                setToday={this.setToday}
+              />
               <CalendarBody
                 monthDetails={this.state.monthDetails}
                 selectedDay={this.state.selectedDay}
