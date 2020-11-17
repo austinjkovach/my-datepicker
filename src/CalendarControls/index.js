@@ -12,7 +12,7 @@ const CalendarControls = props => {
           </div>
         </div>
         <div className="mdpch-button">
-          <div className="mdpch-inner" onClick={ () => props.setYear(-1) }>
+          <div className="mdpchb-inner" onClick={ () => props.setYear(-1) }>
             <span className="mdpchbi-left-arrows"></span>
           </div>
         </div>
