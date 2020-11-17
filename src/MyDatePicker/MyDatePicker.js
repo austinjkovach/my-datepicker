@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './MyDatePicker.css';
 
 import CalendarControls from '../CalendarControls/index';
-// import DayCell from '../DayCell/index';
 import CalendarBody from '../CalendarBody/index';
 
 const oneDay = 60 * 60 * 24 * 1000;
